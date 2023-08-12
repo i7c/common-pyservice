@@ -1,0 +1,10 @@
+[project]
+name = "common-pyservice"
+description = "Common functionality for python services"
+maintainers = [{name = "Michael", email = "michael@decentrafly.com"}]
+requires-python = ">=3.9"
+dependencies = [
+             "cryptography==41.0.1",
+             "flask==2.3.2",
+             "pyjwt==2.8.0"
+             ]
