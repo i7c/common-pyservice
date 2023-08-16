@@ -8,5 +8,10 @@ setup(
     author_email='michael@decentrafly.com',
     description='Common code for python microservices',
     packages=find_packages(),    
-    install_requires=['flask==2.3.2', 'pyjwt==2.8.0', 'cryptography==41.0.1'],
+    install_requires=[
+        'cryptography==41.0.1',
+        'flask-cors==4.0.0',
+        'flask==2.3.2',
+        'pyjwt==2.8.0'
+    ],
 )
