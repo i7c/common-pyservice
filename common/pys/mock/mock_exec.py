@@ -1,3 +1,6 @@
+import json
+
+
 def do_request(hf, rq={}, headers={}):
     default_headers = {"authorization": "Bearer validtoken",
                        "x-forwarded-for": "1.2.3.4, 189.110.31.110, 3.2.3.2",
@@ -8,4 +11,9 @@ def do_request(hf, rq={}, headers={}):
                   "queryStringParameters": {},
                   "headers": eff_headers}
     eff_rq = {**default_rq, **rq}
-    return hf(eff_rq, None)['body']
+    return hf(eff_rq, None)
+
+
+def do_json_request(hf, rq={}, headers={}):
+    response = do_request(hf, rq=rq, headers=headers)
+    response['body'] = json.reads(response['body'])

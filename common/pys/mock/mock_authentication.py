@@ -2,7 +2,7 @@ import re
 from flask import abort, g, request
 
 
-class AuthInterceptor(object):
+class MockAuthInterceptor(object):
     auth_header_payload = re.compile("Bearer[\s]+")
 
     def init_app(self, app):
@@ -15,7 +15,7 @@ class AuthInterceptor(object):
                     abort(401)
                 if not auth_header.startswith('Bearer'):
                     abort(401)
-                payload = AuthInterceptor.auth_header_payload.sub("", auth_header)
+                payload = MockAuthInterceptor.auth_header_payload.sub("", auth_header)
                 if not payload == "validtoken":
                     abort(401)
                 g.auth_identity = {"sub": "1234"}

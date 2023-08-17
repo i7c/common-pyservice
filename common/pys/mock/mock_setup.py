@@ -1,4 +1,4 @@
-from .test_authentication import AuthInterceptor
+from .mock_authentication import MockAuthInterceptor
 from flask_cors import CORS
 
 
@@ -6,8 +6,8 @@ class Diplomats(object):
     pass
 
 
-def fake_setup(app):
+def mock_setup(app):
     CORS(app)
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.extensions['diplomats'] = Diplomats()
-    AuthInterceptor().init_app(app)
+    MockAuthInterceptor().init_app(app)
