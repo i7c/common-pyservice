@@ -4,6 +4,10 @@ import os
 import sys
 
 
+class Diplomats(object):
+    pass
+
+
 def fail(message):
     print(message)
     sys.exit(2)
@@ -16,4 +20,5 @@ def setup(app):
         fail("You must set env var JWT_AUDIENCE")
     CORS(app)
     app.config['CORS_HEADERS'] = 'Content-Type'
+    app.extensions['diplomats'] = Diplomats()
     AuthInterceptor().init_app(app)
