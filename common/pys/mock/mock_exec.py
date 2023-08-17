@@ -16,4 +16,4 @@ def do_request(hf, rq={}, headers={}):
 
 def do_json_request(hf, rq={}, headers={}):
     response = do_request(hf, rq=rq, headers=headers)
-    response['body'] = json.reads(response['body'])
+    response['body'] = json.loads(response['body'])
