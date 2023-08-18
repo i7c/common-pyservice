@@ -16,6 +16,10 @@ class AuthInterceptor(object):
                 if request.method == "OPTIONS":
                     return
                 auth_header = request.headers.get('authorization')
+                cookie = request.cookies.get("dcfsession")
+                if not auth_header and cookie:
+                    auth_header = cookie
+
                 if not auth_header or auth_header.isspace():
                     abort(401)
                 if not auth_header.startswith('Bearer'):
@@ -29,7 +33,8 @@ class AuthInterceptor(object):
                     audience=os.getenv('JWT_AUDIENCE')
                 )
                 g.auth_identity = token
-            except Exception:
+            except Exception as e:
+                print("Authentication failed hard: {}".format(e))
                 abort(401)
 
         app.before_request(interceptor)

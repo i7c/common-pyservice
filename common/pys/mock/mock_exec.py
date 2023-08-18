@@ -2,8 +2,7 @@ import json
 
 
 def do_request(hf, rq={}, headers={}):
-    default_headers = {"authorization": "Bearer validtoken",
-                       "x-forwarded-for": "1.2.3.4, 189.110.31.110, 3.2.3.2",
+    default_headers = {"x-forwarded-for": "1.2.3.4, 189.110.31.110, 3.2.3.2",
                        "x-forwarded-proto": "http"}
     eff_headers = {**default_headers, **headers}
     default_rq = {"httpMethod": "GET",
