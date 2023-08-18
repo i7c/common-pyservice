@@ -18,7 +18,10 @@ def setup(app):
         fail("You must set env var JWKS_ENDPOINT")
     if not os.getenv('JWT_AUDIENCE'):
         fail("You must set env var JWT_AUDIENCE")
+    app.config['CORS_SUPPORTS_CREDENTIALS'] = True
+    app.config['CORS_ORIGINS'] = ["http://localhost:5173",
+                                  "http://localhost",
+                                  "http://ui.decentrafly.org"]
     CORS(app)
-    app.config['CORS_HEADERS'] = 'Content-Type'
     app.extensions['diplomats'] = Diplomats()
     AuthInterceptor().init_app(app)

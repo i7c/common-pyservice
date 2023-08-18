@@ -7,7 +7,11 @@ class Diplomats(object):
 
 
 def mock_setup(app):
-    CORS(app)
     app.config['CORS_HEADERS'] = 'Content-Type'
+    app.config['CORS_SUPPORTS_CREDENTIALS'] = True
+    app.config['CORS_ORIGINS'] = ["http://localhost:5173",
+                                  "http://localhost",
+                                  "http://ui.decentrafly.org"]
+    CORS(app)
     app.extensions['diplomats'] = Diplomats()
     MockAuthInterceptor().init_app(app)
