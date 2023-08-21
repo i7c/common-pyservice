@@ -1,4 +1,5 @@
 from .authentication import AuthInterceptor
+from .cache import no_caching
 from flask_cors import CORS
 import os
 import sys
@@ -23,5 +24,6 @@ def setup(app):
                                   "http://localhost",
                                   "https://ui.decentrafly.org"]
     CORS(app)
+    no_caching(app)
     app.extensions['diplomats'] = Diplomats()
     AuthInterceptor().init_app(app)
