@@ -11,8 +11,6 @@ class AuthInterceptor(object):
         self.jwkclient = PyJWKClient(os.getenv('JWKS_ENDPOINT'))
 
     def init_app(self, app):
-        app.extensions['unsecure_routes'] = []
-
         def interceptor():
             if request.path in app.extensions['unsecure_routes']:
                 return
@@ -45,4 +43,6 @@ class AuthInterceptor(object):
 
 
 def unsecure_route(app, route):
+    if not app.extensions.get('unsecure_routes'):
+        app.extensions['unsecure_routes'] = []
     app.extensions['unsecure_routes'].append(route)
