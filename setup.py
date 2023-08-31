@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='common_pyservice',
-    version='2023.08.19',
+    version='2023.08.31',
     url='https://github.com/michael-D-Fly/common-pyservice',
     author='Michael Weisser',
     author_email='michael@decentrafly.com',

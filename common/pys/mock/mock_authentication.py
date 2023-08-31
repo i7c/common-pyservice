@@ -6,8 +6,12 @@ class MockAuthInterceptor(object):
     auth_header_payload = re.compile("Bearer[\s]+")
 
     def init_app(self, app):
+        app.extensions['unsecure_routes'] = []
+
         def interceptor():
             try:
+                if request.path in app.extensions['unsecure_routes']:
+                    return
                 if request.method == "OPTIONS":
                     return
                 auth_header = request.headers.get('authorization')
