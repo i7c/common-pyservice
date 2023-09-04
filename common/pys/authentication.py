@@ -12,7 +12,7 @@ class AuthInterceptor(object):
 
     def init_app(self, app):
         def interceptor():
-            if request.path in app.extensions['unsecure_routes']:
+            if request.path in app.extensions.get('unsecure_routes', []):
                 return
             try:
                 if request.method == "OPTIONS":

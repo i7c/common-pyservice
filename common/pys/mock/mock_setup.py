@@ -14,4 +14,5 @@ def mock_setup(app):
                                   "http://ui.decentrafly.org"]
     CORS(app)
     app.extensions['diplomats'] = Diplomats()
+    app.extensions['config'] = {}
     MockAuthInterceptor().init_app(app)

@@ -8,7 +8,7 @@ class MockAuthInterceptor(object):
     def init_app(self, app):
         def interceptor():
             try:
-                if request.path in app.extensions['unsecure_routes']:
+                if request.path in app.extensions.get('unsecure_routes', []):
                     return
                 if request.method == "OPTIONS":
                     return

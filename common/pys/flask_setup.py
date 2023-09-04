@@ -26,4 +26,5 @@ def setup(app):
     CORS(app)
     no_caching(app)
     app.extensions['diplomats'] = Diplomats()
+    app.extensions['config'] = {}
     AuthInterceptor().init_app(app)
