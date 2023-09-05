@@ -1,8 +1,8 @@
 import json
 
 
-def do_request(hf, rq={}, headers={}):
-    default_headers = {"x-forwarded-for": "1.2.3.4, 189.110.31.110, 3.2.3.2",
+def do_raw_request(hf, rq={}, headers={}):
+    default_headers = {"x-forwarded-for": "1.2.3.4, 5.6.7.8",
                        "x-forwarded-proto": "http"}
     eff_headers = {**default_headers, **headers}
     default_rq = {"httpMethod": "GET",
@@ -13,7 +13,10 @@ def do_request(hf, rq={}, headers={}):
     return hf(eff_rq, None)
 
 
-def do_json_request(hf, rq={}, headers={}):
-    response = do_request(hf, rq=rq, headers=headers)
-    response['body'] = json.loads(response['body'])
+def do_request(hf, rq={}, headers={}):
+    response = do_raw_request(hf, rq=rq, headers=headers)
+    try:
+        response['body'] = json.loads(response['body'])
+    except Exception:
+        pass
     return response
