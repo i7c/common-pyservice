@@ -13,10 +13,18 @@ def do_raw_request(hf, rq={}, headers={}):
     return hf(eff_rq, None)
 
 
-def do_request(hf, rq={}, headers={}):
+def do_unauth_request(hf, rq={}, headers={}):
     response = do_raw_request(hf, rq=rq, headers=headers)
     try:
         response['body'] = json.loads(response['body'])
     except Exception:
         pass
     return response
+
+
+def do_request(hf, rq={}, headers={}):
+    eff_headers = {
+        "authorization": "validtoken",
+        **headers
+    }
+    return do_unauth_request(hf, rq=rq, headers=eff_headers)
