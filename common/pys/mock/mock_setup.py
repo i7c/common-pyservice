@@ -16,3 +16,4 @@ def mock_setup(app):
     app.extensions['diplomats'] = Diplomats()
     app.extensions['config'] = {}
     MockAuthInterceptor().init_app(app)
+    return app

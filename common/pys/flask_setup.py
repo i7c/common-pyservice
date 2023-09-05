@@ -28,3 +28,4 @@ def setup(app):
     app.extensions['diplomats'] = Diplomats()
     app.extensions['config'] = {}
     AuthInterceptor().init_app(app)
+    return app
