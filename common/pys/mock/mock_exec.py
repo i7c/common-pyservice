@@ -24,7 +24,7 @@ def do_unauth_request(hf, rq={}, headers={}):
 
 def do_request(hf, rq={}, headers={}):
     eff_headers = {
-        "authorization": "validtoken",
+        "authorization": "Bearer validtoken",
         **headers
     }
     return do_unauth_request(hf, rq=rq, headers=eff_headers)
