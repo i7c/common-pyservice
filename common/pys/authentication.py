@@ -4,6 +4,10 @@ import os
 import re
 
 
+def deny(req) -> bool:
+    return False
+
+
 class AuthInterceptor(object):
     auth_header_payload = re.compile("Bearer[\s]+")
 
@@ -12,9 +16,10 @@ class AuthInterceptor(object):
 
     def init_app(self, app):
         def interceptor():
-            if request.path in app.extensions.get('unsecure_routes', []):
-                return
+            allow_fn = app.extensions.get('unsecure_routes', deny)
             try:
+                if allow_fn(request):
+                    return
                 if request.method == "OPTIONS":
                     return
                 auth_header = request.headers.get('authorization')
@@ -42,7 +47,8 @@ class AuthInterceptor(object):
         app.before_request(interceptor)
 
 
-def unsecure_route(app, route):
+def unsecure_route(app, allow_fn):
     if not app.extensions.get('unsecure_routes'):
-        app.extensions['unsecure_routes'] = []
-    app.extensions['unsecure_routes'].append(route)
+        app.extensions['unsecure_routes'] = allow_fn
+        return
+    raise Exception("Cannot redefine unsecure routes")

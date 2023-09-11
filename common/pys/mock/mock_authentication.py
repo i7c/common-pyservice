@@ -2,13 +2,18 @@ import re
 from flask import abort, g, request
 
 
+def deny(req) -> bool:
+    return False
+
+
 class MockAuthInterceptor(object):
     auth_header_payload = re.compile("Bearer[\s]+")
 
     def init_app(self, app):
         def interceptor():
+            allow_fn = app.extensions.get('unsecure_routes', deny)
             try:
-                if request.path in app.extensions.get('unsecure_routes', []):
+                if allow_fn(request):
                     return
                 if request.method == "OPTIONS":
                     return
