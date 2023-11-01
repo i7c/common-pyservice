@@ -8,7 +8,8 @@ dependencies = [
              "boto3==1.28.74",
              "flask-cors==4.0.0",
              "flask==3.0.0",
+             "json-logging==1.3.0",
              "pyjwt==2.8.0"
              ]
 
-version = "2023.10.31.0"
+version = "2023.11.1.0"

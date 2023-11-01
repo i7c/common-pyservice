@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='common_pyservice',
-    version='2023.10.31.0',
+    version='2023.11.1.0',
     url='https://github.com/i7c/common-pyservice',
     author='Constantin Michael Weisser',
     author_email='i7c@posteo.de',
@@ -13,6 +13,7 @@ setup(
         "boto3==1.28.74",
         "flask-cors==4.0.0",
         "flask==3.0.0",
+        "json-logging==1.3.0",
         "pyjwt==2.8.0"
     ],
 )
