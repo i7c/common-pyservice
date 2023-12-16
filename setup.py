@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
+import toml
 
 setup(
     name='common_pyservice',
-    version='2023.09.11',
+    version=toml.load("pyproject.toml")['project']['version'],
     url='https://github.com/michael-D-Fly/common-pyservice',
     author='Michael Weisser',
     author_email='michael@decentrafly.com',
