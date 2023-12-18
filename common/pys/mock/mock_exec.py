@@ -31,7 +31,7 @@ def do_request(hf, rq={}, headers={}):
 
 
 def do_json_request(hf, rq={}, headers={}):
-    do_request(
+    return do_request(
         hf,
         {
             **rq,
