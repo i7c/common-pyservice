@@ -28,3 +28,18 @@ def do_request(hf, rq={}, headers={}):
         **headers
     }
     return do_unauth_request(hf, rq=rq, headers=eff_headers)
+
+
+def do_json_request(hf, rq={}, headers={}):
+    do_request(
+        hf,
+        {
+            **rq,
+            'body': json.dumps(rq['body'])
+        },
+        {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            **headers
+        }
+    )

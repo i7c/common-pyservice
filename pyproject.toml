@@ -10,4 +10,4 @@ dependencies = [
              "pyjwt==2.8.0"
              ]
 
-version = "2023.12.16.0"
+version = "2023.12.18.0"
