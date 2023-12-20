@@ -4,10 +4,11 @@ description = "Common functionality for python services"
 maintainers = [{name = "Michael", email = "michael@decentrafly.com"}]
 requires-python = ">=3.9"
 dependencies = [
-             "cryptography==41.0.1",
+             "cryptography==41.0.7",
              "flask-cors==4.0.0",
              "flask==2.3.2",
-             "pyjwt==2.8.0"
+             "pyjwt==2.8.0",
+             "schema==0.7.5",
              ]
 
 version = "2023.12.18.1"

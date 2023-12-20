@@ -10,9 +10,10 @@ setup(
     description='Common code for python microservices',
     packages=find_packages(),
     install_requires=[
-        'cryptography==41.0.1',
+        'cryptography==41.0.7',
         'flask-cors==4.0.0',
         'flask==2.3.2',
-        'pyjwt==2.8.0'
+        'pyjwt==2.8.0',
+        'schema==0.7.5',
     ],
 )
