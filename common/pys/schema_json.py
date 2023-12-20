@@ -12,3 +12,13 @@ def coerce(s: schema.Schema):
             return handler(*args, **kwargs)
         return coerce_json_body_interceptor
     return coerce_body_decorator
+
+
+def externalize(s: schema.Schema):
+    def externalize_body_decorator(handler):
+        @wraps(handler)
+        def externalize_json_body_interceptor(*args, **kwargs):
+            uncoerced_result = handler(*args, **kwargs)
+            return s.validate(uncoerced_result)
+        return externalize_json_body_interceptor
+    return externalize_body_decorator

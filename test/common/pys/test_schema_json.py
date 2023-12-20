@@ -10,8 +10,11 @@ class CoercerTests(unittest.TestCase):
         app = Flask("testapp")
 
         @schema_json.coerce(schema.Schema({'foo': schema.Use(int)}))
+        @schema_json.externalize(schema.Schema({'bar': schema.Use(str)}))
         def handler():
             self.assertEqual(g.coerced_body, {'foo': 123})
+            return {'bar': 124}
 
         with app.test_request_context(json={'foo': '123'}):
-            handler()
+            result = handler()
+            self.assertEqual(result, {'bar': '124'})
