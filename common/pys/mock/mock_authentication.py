@@ -1,5 +1,6 @@
-import re
 from flask import abort, g, request
+import json
+import re
 
 
 def deny(req) -> bool:
@@ -23,9 +24,14 @@ class MockAuthInterceptor(object):
                 if not auth_header.startswith('Bearer'):
                     abort(401)
                 payload = MockAuthInterceptor.auth_header_payload.sub("", auth_header)
-                if not payload == "validtoken":
-                    abort(401)
-                g.auth_identity = {"sub": "1234"}
+                try:
+                    g.auth_identity = json.loads(payload)
+                    return
+                except Exception:
+                    if payload == "validtoken":
+                        g.auth_identity = {"sub": "1234"}
+                        return
+                abort(401)
             except Exception:
                 abort(401)
 
