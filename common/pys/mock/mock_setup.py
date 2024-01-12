@@ -1,4 +1,3 @@
-from .mock_authentication import MockAuthInterceptor
 from flask_cors import CORS
 
 
@@ -15,5 +14,4 @@ def mock_setup(app):
     CORS(app)
     app.extensions['diplomats'] = Diplomats()
     app.extensions['config'] = {}
-    MockAuthInterceptor().init_app(app)
     return app

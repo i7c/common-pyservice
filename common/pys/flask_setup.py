@@ -1,4 +1,3 @@
-from .authentication import AuthInterceptor
 from .cache import no_caching
 from flask_cors import CORS
 import os
@@ -27,5 +26,4 @@ def setup(app):
     no_caching(app)
     app.extensions['diplomats'] = Diplomats()
     app.extensions['config'] = {}
-    AuthInterceptor().init_app(app)
     return app
