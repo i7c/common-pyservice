@@ -10,6 +10,7 @@ setup(
     description='Common code for python microservices',
     packages=find_packages(),
     install_requires=[
+        'aws-lambda-wsgi==0.0.6',
         'cryptography==41.0.7',
         'flask-cors==4.0.0',
         'flask==2.3.2',

@@ -4,6 +4,7 @@ description = "Common functionality for python services"
 maintainers = [{name = "Michael", email = "michael@decentrafly.com"}]
 requires-python = ">=3.9"
 dependencies = [
+             "aws-lambda-wsgi==0.0.6",
              "cryptography==41.0.7",
              "flask-cors==4.0.0",
              "flask==2.3.2",
@@ -11,4 +12,4 @@ dependencies = [
              "schema==0.7.5",
              ]
 
-version = "2024.01.12"
+version = "2024.01.12.2"
