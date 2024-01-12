@@ -2,16 +2,27 @@ from flask import abort, request, g
 from jwt import PyJWKClient, decode
 import os
 import re
+import sys
 
 
 def deny(req) -> bool:
     return False
 
 
+def fail(message):
+    print(message)
+    sys.exit(2)
+
+
 class AuthInterceptor(object):
     auth_header_payload = re.compile("Bearer[\s]+")
 
     def __init__(self):
+        if not os.getenv('JWKS_ENDPOINT'):
+            fail("You must set env var JWKS_ENDPOINT")
+        if not os.getenv('JWT_AUDIENCE'):
+            fail("You must set env var JWT_AUDIENCE")
+
         self.jwkclient = PyJWKClient(os.getenv('JWKS_ENDPOINT'))
 
     def init_app(self, app):
