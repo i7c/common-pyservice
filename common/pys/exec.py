@@ -8,7 +8,8 @@ def execute_handler(app, event):
             'queryStringParameters': {},
             'path': '/run',
             'headers': {"x-forwarded-proto": "directevent",
-                        "accept": "application/json"},
+                        "accept": "application/json",
+                        "content-type": "application/json"},
             **event
         },
         None)
