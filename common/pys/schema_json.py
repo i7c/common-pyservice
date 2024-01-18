@@ -11,8 +11,7 @@ def coerce(s: schema.Schema):
                 body = request.json
                 g.coerced_body = s.validate(body)
             except schema.SchemaError as e:
-                print(e)
-                abort(400, "Payload does not conform with schema")
+                abort(400, "Payload does not conform with schema: {}".format(e))
             return handler(*args, **kwargs)
         return coerce_json_body_interceptor
     return coerce_body_decorator
@@ -26,7 +25,6 @@ def externalize(s: schema.Schema):
             try:
                 return s.validate(uncoerced_result)
             except schema.SchemaError as e:
-                print(e)
-                abort(500, "Return payload does not conform with schema")
+                abort(500, "Return payload does not conform with schema: {}".format(e))
         return externalize_json_body_interceptor
     return externalize_body_decorator
