@@ -13,7 +13,7 @@ class RequestsDiplomat(object):
 
     def req(self, method='GET', url='/', data=None, headers={}, reqschema=None, respschema=None):
         if reqschema:
-            reqschema.validate()
+            reqschema.validate(data)
 
         if len(self.mocks) > 0:
             response_payload = self.mocks["{}: {}".format(method, url)]
