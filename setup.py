@@ -15,6 +15,7 @@ setup(
         'flask-cors==4.0.0',
         'flask==2.3.2',
         'pyjwt==2.8.0',
+        'requests==2.31.0',
         'schema==0.7.5',
     ],
 )
