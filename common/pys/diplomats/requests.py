@@ -21,7 +21,7 @@ class RequestsDiplomat(object):
             r = requests.Request(
                 method,
                 self.base_url + url,
-                data=data,
+                json=data,
                 headers={
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
