@@ -9,14 +9,14 @@ class RequestsDiplomat(object):
         self.mocks = {}
 
     def mock(self, method='GET', url='/', response={}):
-        self.mocks["{}|{}".format(method, url)] = response
+        self.mocks["{}: {};".format(method, url)] = response
 
     def req(self, method='GET', url='/', json=None, headers={}, reqschema=None, respschema=None):
         if reqschema:
             reqschema.validate(json)
 
         if len(self.mocks) > 0:
-            response_payload = self.mocks["{}: {}".format(method, url)]
+            response_payload = self.mocks["{}: {};".format(method, url)]
         else:
             r = requests.Request(
                 method,
