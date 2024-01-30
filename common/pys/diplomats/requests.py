@@ -11,9 +11,9 @@ class RequestsDiplomat(object):
     def mock(self, method='GET', url='/', response={}):
         self.mocks["{}|{}".format(method, url)] = response
 
-    def req(self, method='GET', url='/', data=None, headers={}, reqschema=None, respschema=None):
+    def req(self, method='GET', url='/', json=None, headers={}, reqschema=None, respschema=None):
         if reqschema:
-            reqschema.validate(data)
+            reqschema.validate(json)
 
         if len(self.mocks) > 0:
             response_payload = self.mocks["{}: {}".format(method, url)]
@@ -21,7 +21,7 @@ class RequestsDiplomat(object):
             r = requests.Request(
                 method,
                 self.base_url + url,
-                json=data,
+                json=json,
                 headers={
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
