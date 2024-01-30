@@ -20,7 +20,7 @@ class RequestsDiplomat(object):
         else:
             r = requests.Request(
                 method,
-                url,
+                self.base_url + url,
                 data=data,
                 headers={
                     'Content-Type': 'application/json',
