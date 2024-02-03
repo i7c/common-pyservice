@@ -11,7 +11,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'aws-lambda-wsgi==0.0.6',
-        'cryptography==41.0.2',
+        'cryptography==42.0.2',
         'flask-cors==4.0.0',
         'flask==3.0.1',
         'pyjwt==2.8.0',
