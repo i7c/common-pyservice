@@ -8,9 +8,7 @@ class Diplomats(object):
 
 def setup(app):
     app.config['CORS_SUPPORTS_CREDENTIALS'] = True
-    app.config['CORS_ORIGINS'] = ["http://localhost:5173",
-                                  "http://localhost",
-                                  "https://ui.decentrafly.org"]
+    app.config['CORS_ORIGINS'] = ["http://localhost:5173", "http://localhost"]
     CORS(app)
     no_caching(app)
     app.extensions['diplomats'] = Diplomats()
