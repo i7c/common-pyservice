@@ -14,6 +14,7 @@ setup(
         'cryptography==42.0.2',
         'flask-cors==4.0.0',
         'flask==3.0.1',
+        'json-logging==1.3.0',
         'pyjwt==2.8.0',
         'requests==2.31.0',
         'schema==0.7.5',
