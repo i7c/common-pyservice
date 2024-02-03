@@ -10,7 +10,7 @@ class LoggerDiplomat(object):
         logger = logging.getLogger("system")
         logger.setLevel(os.getenv('LOGLEVEL', 'INFO'))
         logger.addHandler(logging.StreamHandler(sys.stdout))
-        logger.info("Logger initialized")
+        logger.debug("common-pys logger initialized")
         self.logger = logger
 
     def log(self, msg, level=logging.INFO, data=None):
