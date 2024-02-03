@@ -13,7 +13,7 @@ class MockMetricsDiplomatTests(unittest.TestCase):
             mmd.metrics,
             equal_to({
                 'foo/bar': [{
-                    'MetricName': 'asdfasdfbar',
+                    'MetricName': 'bar',
                     'Timestamp': 1000,
                     'Value': 100,
                     'Unit': 'Count',
