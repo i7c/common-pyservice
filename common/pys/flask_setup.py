@@ -8,7 +8,6 @@ class Diplomats(object):
 
 
 def setup(app):
-    app.config['CORS_HEADERS'] = 'Content-Type'
     app.config['CORS_SUPPORTS_CREDENTIALS'] = True
     app.config['CORS_ORIGINS'] = ["http://localhost:5173", "http://localhost"]
     CORS(app)
