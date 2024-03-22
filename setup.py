@@ -1,9 +1,8 @@
 from setuptools import setup, find_packages
-import toml
 
 setup(
     name='common_pyservice',
-    version=toml.load("pyproject.toml")['project']['version'],
+    version='2024.3.16.0',
     url='https://github.com/i7c/common-pyservice',
     author='Constantin Michael Weisser',
     author_email='cmw@weisser-se.com',
