@@ -2,10 +2,33 @@ import time
 
 
 class Time(object):
+    def __init__(self):
+        self.timers = {}
+
     def now(self, tnow=None):
         if tnow:
             return tnow
         return time.time()
+
+    def start_timer(self, timer):
+        now = self.now()
+        self.timers[timer] = now
+        return now
+
+    def stop_timer(self, timer):
+        now = self.now()
+        if timer not in self.timers:
+            raise ValueError(f'Trying to stop timer {timer}, but it was never started.')
+        start = self.timers[timer]
+        del self.timers[timer]
+        return now - start
+
+    def elapsed_timer(self, timer):
+        now = self.now()
+        if timer not in self.timers:
+            raise ValueError(f'Trying to peek at timer {timer}, but it was never started.')
+        start = self.timers[timer]
+        return now - start
 
 
 class MockTime(object):
