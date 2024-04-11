@@ -58,3 +58,37 @@ class TestTime(unittest.TestCase):
             h.calling(t.stop_timer).with_args("foo"),
             h.raises(ValueError)
         )
+
+    def test_mock_advance(self):
+        t = sut.MockTime()
+        t.set_time(10)
+        t.advance(1)
+
+        h.assert_that(
+            t.time,
+            h.equal_to(11)
+        )
+
+    def test_mock_advance_without_initial(self):
+        realnow = time.time()
+        t = sut.MockTime()
+        t.advance(1)
+
+        h.assert_that(
+            t.time,
+            h.greater_than_or_equal_to(realnow)
+        )
+
+    def test_timers_with_mock_time(self):
+        t = sut.MockTime()
+
+        t.set_time(1000)
+        start = t.start_timer("foo")
+        t.set_time(2000)
+        elapsed1 = t.elapsed_timer("foo")
+        t.advance(1000)
+        elapsed2 = t.stop_timer("foo")
+
+        h.assert_that(start, h.close_to(1000, 0.2))
+        h.assert_that(elapsed1,  h.close_to(1000, 0.2))
+        h.assert_that(elapsed2,  h.close_to(2000, 0.2))

@@ -31,14 +31,14 @@ class Time(object):
         return now - start
 
 
-class MockTime(object):
-    def __init__(self):
+class MockTime(Time):
+    def __init__(self, tick=0.1):
+        super(MockTime, self).__init__()
         self.time = None
         self.oneshot = False
+        self.tick = tick
 
     def set_time(self, t):
-        if not self.time:
-            self.oneshot = True
         self.time = t
 
     def release(self):
@@ -55,6 +55,10 @@ class MockTime(object):
         else:
             raise ValueError("Mock time is not set, use set_time()")
 
+    def advance(self, by):
+        now = self.now(self.time)
+        self.set_time(now + by)
+
     def now(self, tnow=None):
         if tnow:
             return tnow
@@ -67,6 +71,6 @@ class MockTime(object):
             return self.time
 
         # Advance roughly 1 second
-        self.time += 0.9965436173
+        self.time += self.tick
 
         return self.time
