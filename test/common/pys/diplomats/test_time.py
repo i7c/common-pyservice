@@ -92,3 +92,9 @@ class TestTime(unittest.TestCase):
         h.assert_that(start, h.close_to(1000, 0.2))
         h.assert_that(elapsed1,  h.close_to(1000, 0.2))
         h.assert_that(elapsed2,  h.close_to(2000, 0.2))
+
+    def test_elapsed_time_not_started_timer(self):
+        t = sut.Time()
+
+        elapsed = t.elapsed_timer("foo")
+        h.assert_that(elapsed, h.is_(None))

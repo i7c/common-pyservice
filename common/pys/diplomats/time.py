@@ -26,7 +26,7 @@ class Time(object):
     def elapsed_timer(self, timer):
         now = self.now()
         if timer not in self.timers:
-            raise ValueError(f'Trying to peek at timer {timer}, but it was never started.')
+            return None
         start = self.timers[timer]
         return now - start
 
