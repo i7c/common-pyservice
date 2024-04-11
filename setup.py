@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='common_pyservice',
-    version='2024.4.11.0',
+    version='2024.4.11.1',
     url='https://github.com/i7c/common-pyservice',
     author='Constantin Michael Weisser',
     author_email='cmw@weisser-se.com',
